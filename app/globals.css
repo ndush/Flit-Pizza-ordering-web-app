@@ -1,0 +1,242 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .flex-1 {
+    flex: 1;
+    margin-bottom: 20px; 
+  }
+
+
+
+  .mx-10 {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .mr-90 {
+    margin-right: 0; 
+  }
+
+  .w-15 {
+    width: 100%; 
+    max-width: 100px; 
+  }
+
+
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .justify-between {
+    justify-content: space-between;
+  }
+
+  .mr-4 {
+    margin-right: 0;
+    margin-bottom: 10px; 
+  }
+
+  .w-4,
+  .h-4 {
+    width: 20px; 
+    height: 20px;
+  }
+
+  .sticky {
+    position: static; 
+  }
+}
+
+
+
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: rgb(var(--foreground-rgb));
+ 
+}
+.container {
+  min-height: 100vh; 
+
+}
+ 
+
+
+
+.nav {
+  background-color: #FFFFFF;
+  padding: 10px;
+}
+
+.navList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.navList li {
+  margin-right: 20px;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+
+.icon:hover {
+  opacity: 0.8;
+}
+
+.button {
+  background-color: #f8cc17;
+  color: white;
+  padding: 10px 20px;
+  margin-top: 5px;
+  text-decoration: none;
+  font-size: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 10px;
+  display: flex;
+  align-items: center; 
+}
+
+.button img {
+  margin-right: 2px;
+}
+
+.button:hover {
+  background-color: #d4b100;
+}
+
+
+
+
+.loginContainer {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 8px;
+}
+
+input {
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+thead {
+  background-color: #f2f2f2;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+
+th {
+  text-align: left;
+}
+
+
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+
+.cart-total {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: black;
+  color: white;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.cart-total h2 {
+  margin-bottom: 10px;
+}
+
+.cart-total p {
+  margin: 5px 0;
+}
+
+.cart-total button {
+  margin-top: 10px;
+}
+
+
+#paypal-button-container {
+  width: 200px;
+  height: 100px;
+  margin-top: 10px;
+}
+
+.order-status-icons {
+  display: flex;
+}
+
+.status-icon-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 500px; /* Adjust as needed for spacing */
+}
+
+.status-icon {
+  font-size: 2em;
+  margin-bottom: 10px; /* Adjust as needed for spacing between icon and text */
+}
+
+/* .footer-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  padding: 20px; 
+  box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.1); 
+} */
