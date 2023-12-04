@@ -1,5 +1,3 @@
-// contexts/AuthContext.js
-
 import React, { createContext, useContext, useState } from 'react';
 
 const AuthContext = createContext();
@@ -9,15 +7,12 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const login = async (email, password) => {
-    // Replace this with your actual authentication logic
     const isValidUser = await simulateAuthentication(email, password);
 
     if (isValidUser) {
-      // Simulate getting user data from your authentication provider
       const userData = {
         email,
-        // Other user properties...
-        role: email === 'admin@mail.com' ? 'admin' : 'user', // Simulate assigning roles
+        role: email === 'admin@mail.com' ? 'admin' : 'user',
       };
 
       setUser(userData);
@@ -28,7 +23,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   const simulateAuthentication = (email, password) => {
-    // Simulate a simple authentication check
     const validAdminEmail = 'admin@mail.com';
     const validAdminPassword = 'admin123';
     const validUserEmail = 'user@mail.com';
@@ -40,7 +34,7 @@ export const AuthProvider = ({ children }) => {
           (email === validAdminEmail && password === validAdminPassword) ||
           (email === validUserEmail && password === validUserPassword)
         );
-      }, 1000); // Simulate a delay for asynchronous behavior
+      }, 1000);
     });
   };
 
@@ -60,7 +54,6 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-// useAuth hook should be used within a functional component
 export const useAuth = () => {
   const context = useContext(AuthContext);
 

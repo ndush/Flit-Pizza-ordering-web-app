@@ -1,30 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import Script from 'next/script';
-import { v4 as uuidv4 } from 'uuid';
-import { useRouter } from 'next/router';
-import { useCart, actionTypes } from '../components/CartContext';  // Import useCart and actionTypes
-import CashOnDeliveryForm from './CashOnDeliveryForm';
+import React, { useState, useEffect } from "react";
+import { useCart, actionTypes } from "../components/CartContext";
+import Script from "next/script";
+import { v4 as uuidv4 } from "uuid";
+import { useRouter } from "next/router";
+import CashOnDeliveryForm from "./CashOnDeliveryForm";
 
 const Cart = () => {
   const router = useRouter();
-  const { cart, dispatch, clearCart, setOrderDetails } = useCart();  // Destructure dispatch from useCart
-  const [checkoutButtonText, setCheckoutButtonText] = useState('CHECKOUT NOW');
-  const [paymentMethod, setPaymentMethod] = useState('');
+  const { cart, dispatch } = useCart();
+  const [checkoutButtonText, setCheckoutButtonText] = useState("CHECKOUT NOW");
+  const [paymentMethod, setPaymentMethod] = useState("");
   const [isSdkLoaded, setIsSdkLoaded] = useState(false);
   const [showCashOnDeliveryForm, setShowCashOnDeliveryForm] = useState(false);
 
-  const subtotal = cart.reduce((acc, item) => acc + (item.price || 0) * (item.quantity || 1), 0);
+  const subtotal = cart.reduce(
+    (acc, item) => acc + (item.price || 0) * (item.quantity || 1),
+    0
+  );
   const discount = 0;
   const total = subtotal - discount;
 
   useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://www.paypal.com/sdk/js?client-id=ARn5FhcUL1S4anTD9LCDfewEkA5p3c6e-9a3iNe_aDMCF6SZvBZfCr21zm4ntAi7aYXLVUqdNNiz7DwN';
+    const script = document.createElement("script");
+    script.src =
+      "https://www.paypal.com/sdk/js?client-id=ARn5FhcUL1S4anTD9LCDfewEkA5p3c6e-9a3iNe_aDMCF6SZvBZfCr21zm4ntAi7aYXLVUqdNNiz7DwN";
     script.async = true;
 
     script.onload = () => {
       setIsSdkLoaded(true);
-      console.log('PayPal SDK loaded');
+      console.log("PayPal SDK loaded");
       if (window.onPayPalSDKReady) {
         window.onPayPalSDKReady();
       }
@@ -35,7 +39,7 @@ const Cart = () => {
     return () => {
       if (script.parentNode) {
         script.parentNode.removeChild(script);
-        console.log('PayPal script removed');
+        console.log("PayPal script removed");
       }
     };
   }, []);
@@ -47,10 +51,10 @@ const Cart = () => {
   }, [isSdkLoaded]);
 
   const renderPayPalButton = () => {
-    const container = document.getElementById('paypal-button-container');
+    const container = document.getElementById("paypal-button-container");
 
     if (!container) {
-      console.error('PayPal button container not found');
+      console.error("PayPal button container not found");
       return;
     }
 
@@ -63,7 +67,7 @@ const Cart = () => {
               purchase_units: [
                 {
                   amount: {
-                    currency_code: 'USD',
+                    currency_code: "USD",
                     value: total.toFixed(2),
                   },
                 },
@@ -73,29 +77,26 @@ const Cart = () => {
           },
           onApprove: async (data, actions) => {
             const response = await yourPaymentProcessingFunction(data);
-            console.log('Payment approved:', response);
+            console.log("Payment approved:", response);
 
-            // Dispatch the PLACE_ORDER action with order details
             const orderDetails = {
               isPaid: true,
               subtotal: subtotal,
               discount: discount,
               total: total,
-              // Add other order details...
             };
             dispatch({ type: actionTypes.PLACE_ORDER, payload: orderDetails });
           },
         })
-        .render('#paypal-button-container'); // Use the container ID directly
+        .render("#paypal-button-container");
 
-      console.log('PayPal button rendered');
+      console.log("PayPal button rendered");
     };
 
     if (window.paypal) {
       renderButton();
     } else {
-      // If the PayPal SDK is not yet loaded, wait for it to load
-      console.log('Waiting for PayPal SDK to load...');
+      console.log("Waiting for PayPal SDK to load...");
       window.onPayPalSDKReady = () => {
         renderButton();
       };
@@ -103,44 +104,42 @@ const Cart = () => {
   };
 
   const yourPaymentProcessingFunction = async (data) => {
-    return { status: 'success' };
+    return { status: "success" };
   };
 
   const handleCheckout = () => {
-    if (paymentMethod === '') {
-      setCheckoutButtonText('CASH ON DELIVERY');
-      setPaymentMethod('');
+    if (paymentMethod === "") {
+      setCheckoutButtonText("CASH ON DELIVERY");
+      setPaymentMethod("");
       setShowCashOnDeliveryForm(true);
     }
   };
 
   const handleCashOnDeliverySubmit = async (formData) => {
     const orderedItemIds = cart.map((item) => item.id);
-    dispatch({ type: 'REMOVE_FROM_CART', payload: orderedItemIds });
+    dispatch({ type: "REMOVE_FROM_CART", payload: orderedItemIds });
 
-    // Reset cart, which will trigger recalculation of subtotal and total
-    dispatch({ type: 'CLEAR_CART' });
+    dispatch({ type: "CLEAR_CART" });
 
     setShowCashOnDeliveryForm(false);
 
-    const orderId = generateOrderId(); // You need to implement generateOrderId function
+    const orderId = generateOrderId();
 
-    console.log('Redirecting to:', `/order/${orderId}`);
+    console.log("Redirecting to:", `/order/${orderId}`);
 
     await router.push(`/order/${orderId}`);
 
-    console.log('Redirected successfully');
+    console.log("Redirected successfully");
   };
 
   const generateOrderId = () => {
-    // Generate a unique identifier, for example, using a library like uuid
     return uuidv4();
   };
 
   return (
     <div className="flex justify-center">
       <Script
-        src='https://www.paypal.com/sdk/js?client-id=ARn5FhcUL1S4anTD9LCDfewEkA5p3c6e-9a3iNe_aDMCF6SZvBZfCr21zm4ntAi7aYXLVUqdNNiz7DwN'
+        src="https://www.paypal.com/sdk/js?client-id=ARn5FhcUL1S4anTD9LCDfewEkA5p3c6e-9a3iNe_aDMCF6SZvBZfCr21zm4ntAi7aYXLVUqdNNiz7DwN"
         strategy="beforeInteractive"
       />
       <div className="flex-1">
@@ -160,19 +159,26 @@ const Cart = () => {
               </tr>
             </thead>
             <tbody>
-              {/* Other table cell elements */}
               {cart.map((item) => (
                 <React.Fragment key={item.id}>
                   <tr>
                     <td>
-                      <img src={item.image} alt={item.name} style={{ width: '50px' }} />
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        style={{ width: "50px" }}
+                      />
                     </td>
                     <td>{item.name}</td>
                     <td>
                       <span>
                         <td>{item.extra}</td>
                         {item.ingredients && (
-                          <p>{Object.keys(item.ingredients).filter(key => item.ingredients[key]).join(', ')}</p>
+                          <p>
+                            {Object.keys(item.ingredients)
+                              .filter((key) => item.ingredients[key])
+                              .join(", ")}
+                          </p>
                         )}
                       </span>
                     </td>
@@ -181,7 +187,13 @@ const Cart = () => {
                     <td>{item.price * item.quantity}</td>
                   </tr>
                   <tr>
-                    <td colSpan="6" style={{ borderBottom: '1px solid #ccc', marginBottom: '10px' }}></td>
+                    <td
+                      colSpan="6"
+                      style={{
+                        borderBottom: "1px solid #ccc",
+                        marginBottom: "10px",
+                      }}
+                    ></td>
                   </tr>
                 </React.Fragment>
               ))}
@@ -191,7 +203,10 @@ const Cart = () => {
       </div>
 
       {cart.length > 0 && (
-        <div className="cart-total" style={{ marginLeft: '20px', fontSize: '1.2em' }}>
+        <div
+          className="cart-total"
+          style={{ marginLeft: "20px", fontSize: "1.2em" }}
+        >
           <h2>CART TOTAL</h2>
           <div>
             <p>Subtotal: ${subtotal.toLocaleString()}</p>
@@ -202,9 +217,7 @@ const Cart = () => {
             {checkoutButtonText}
           </button>
           {paymentMethod && <p>Payment Method: {paymentMethod}</p>}
-          {isSdkLoaded && (
-            <div id="paypal-button-container"></div>
-          )}
+          {isSdkLoaded && <div id="paypal-button-container"></div>}
         </div>
       )}
 

@@ -1,5 +1,3 @@
-// CartContext.js
-
 import React, { createContext, useContext, useReducer } from 'react';
 
 const CartContext = createContext();
@@ -14,7 +12,7 @@ const cartReducer = (state, action) => {
       return { ...state, cart: [...state.cart, action.payload] };
     case 'CLEAR_CART':
       return { ...state, cart: [] };
-    // Add other actions as needed
+  
     default:
       return state;
   }

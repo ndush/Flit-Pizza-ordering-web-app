@@ -1,16 +1,14 @@
 import Products from "./products";
 
-
-
 const Home = () => {
   return (
     <div className="mx-10">
-     <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-8 relative">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-8 relative">
         <div className="relative">
           <p className="text-lg">
             <b>
-              Handmade,<br></br> With an Extra<br></br> Pinch Of{" "}
-              <span style={{ color: "red" }}>Love</span>
+              Handmade,<br></br> With an Extra<br></br> Pinch Of
+              <span style={{ color: "red" }}> Love</span>
             </b>
             <br></br>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -81,108 +79,144 @@ const Home = () => {
       </div>
       <div>
         <h5 style={{ color: "red" }}>Popular Dishes</h5>
-        <h3 className="text-4xl font-bold mb-4">Browse our Menu</h3>
-        <Products/>
+        <h3 className="text-4l font-bold mb-4">Browse our Menu</h3>
+        <Products />
       </div>
-      <div>
-        <h5 style={{ color: "red" }}>Our Strength</h5>
-        <h3 className="text-4xl font-bold mb-4">Why We Are The Best?</h3>
-        <div className="flex">
-          <div className="flex-1 text-center">
-            🍚
-            <h4 className="text-lg font-bold mb-2">All Kinds of Foods</h4>
-            <p>
-              {" "}
-              Lorem ipsum dolor sit amet,<br></br> consectetur adipiscing elit.
-            </p>
-          </div>
-          <div className="flex-1 text-center">
-            💮
-            <h4 className="text-lg font-bold mb-2">All Kinds of Foods</h4>
-            <p>
-              {" "}
-              Lorem ipsum dolor sit amet,<br></br> consectetur adipiscing elit.
-            </p>
-          </div>
-          <div className="flex-1 text-center">
-            ☺️
-            <h4 className="text-lg font-bold mb-2">All Kinds of Foods</h4>
-            <p>
-              {" "}
-              Lorem ipsum dolor sit amet,<br></br> consectetur adipiscing elit.
-            </p>
-          </div>
-          <div className="flex-1 text-center">
-            <img
-              src="/images/q.png"
-              style={{ width: "20px", height: "20px" }}
-            />
-            <h4 className="text-lg font-bold mb-2">All Kinds of Foods</h4>
-            <p>
-              {" "}
-              Lorem ipsum dolor sit amet,<br></br> consectetur adipiscing elit.
-            </p>
-          </div>
-        </div>
-      </div>
-      below{" "}
-      <div>
+      <div style={{ position: "relative" }}>
         <img
-          src="/images/v.png"
-          className="w-full h-full relative z-10"
-          style={{ width: "30px", height: "30px", marginTop: "40px" }}
+          src="/images/hlf.png"
+          style={{
+            width: "60px",
+            height: "60px",
+            position: "absolute",
+            top: 0,
+            right: 0,
+          }}
         />
-        <h5 style={{ color: "red" }}>Customer Feedback</h5>
-        <h3 className="text-4xl font-bold mb-4">Client Testimonials</h3>
+        <div
+          style={{
+            backgroundColor: "#f0f0f0",
+            marginTop: "50px",
+            paddingRight: "10px",
+            paddingLeft: "10px",
+            paddingTop: "10px",
+            paddingBottom: "10px",
+          }}
+        >
+          <h5 style={{ color: "red" }}>Our Strength</h5>
+          <h3 className="text-4l font-bold mb-4">Why We Are The Best?</h3>
 
-        <div className="flex">
-          <div className="flex-1 text-center">
-            <div className="border p-4 rounded-lg">
+          <div
+            className="flex"
+            style={{ paddingRight: "10px", paddingLeft: "10px" }}
+          >
+            <div className="flex-1 ">
               <img
-                src="/images/aa.jpg"
-                alt="Takar Bowa 1"
-                className="w-16 h-16 rounded-full mb-4"
+                src="/images/sima.png"
+                style={{ width: "20px", height: "20px" }}
               />
-              <h4 className="text-lg font-bold mb-2">Takar Bowa</h4>
-              <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <h4 className="text-4l font-bold mb-2">All Kinds of Foods</h4>
+              <p>
+                Lorem ipsum dolor sit amet,<br></br> consectetur adipiscing
+                elit.
+              </p>
+            </div>
+            <div className="flex-1 ">
+              <img
+                src="/images/fresh.png"
+                style={{ width: "20px", height: "20px" }}
+              />
+              <h4 className="text-4l font-bold mb-2">All Kinds of Foods</h4>
+              <p>
+                {" "}
+                Lorem ipsum dolor sit amet,<br></br> consectetur adipiscing
+                elit.
+              </p>
+            </div>
+            <div className="flex-1 ">
+              <img
+                src="/images/smile.png"
+                style={{ width: "20px", height: "20px" }}
+              />
+              <h4 className="text-4l font-bold mb-2">All Kinds of Foods</h4>
+              <p>
+                {" "}
+                Lorem ipsum dolor sit amet,<br></br> consectetur adipiscing
+                elit.
+              </p>
+            </div>
+
+            <div className="flex-1 ">
+              <img
+                src="/images/delv.png"
+                style={{ width: "20px", height: "20px" }}
+              />
+              <h4 className="text-4l font-bold mb-2">All Kinds of Foods</h4>
+              <p>
+                Lorem ipsum dolor sit amet,<br></br> consectetur adipiscing
+                elit.
+              </p>
             </div>
           </div>
-          <div className="flex-1 text-center">
-            <div className="border p-4 rounded-lg">
-              <img
-                src="/images/bb.jpg"
-                alt="Takar Bowa 2"
-                className="w-16 h-16 rounded-full mb-4"
-              />
-              <h4 className="text-lg font-bold mb-2">Takar Bowa</h4>
-              <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+
+        <div>
+          <img
+            src="/images/v.png"
+            className="w-full h-full relative z-10"
+            style={{ width: "30px", height: "30px", marginTop: "40px" }}
+          />
+          <h5 style={{ color: "red" }}>Customer Feedback</h5>
+          <h3 className="text-4l font-bold mb-4">Client Testimonials</h3>
+
+          <div className="flex">
+            <div className="flex-1 text-center">
+              <div className="border p-4 rounded-lg mb-4 mr-4">
+                <img
+                  src="/images/aa.jpg"
+                  alt="Takar Bowa 1"
+                  className="w-16 h-16 rounded-full mb-4 object-cover"
+                />
+                <h4 className="text-lg font-bold mb-2">Takar Bowa</h4>
+                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </div>
             </div>
-          </div>
-          <div className="flex-1 text-center">
-            <div className="border p-4 rounded-lg">
-              <img
-                src="/images/cc.jpg"
-                alt="Takar Bowa 3"
-                className="w-16 h-16 rounded-full mb-4"
-              />
-              <h4 className="text-lg font-bold mb-2">Takar Bowa</h4>
-              <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <div className="flex-1 text-center">
+              <div className="border p-4 rounded-lg mb-4 mr-4">
+                <img
+                  src="/images/bb.jpg"
+                  alt="Takar Bowa 2"
+                  className="w-16 h-16 rounded-full mb-4 object-cover"
+                />
+                <h4 className="text-lg font-bold mb-2">Takar Bowa</h4>
+                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </div>
             </div>
-          </div>
-          <div className="flex-1 text-center">
-            <div className="border p-4 rounded-lg">
-              <img
-                src="/images/dd.jpg"
-                alt="Takar Bowa 4"
-                className="w-16 h-16 rounded-full mb-4"
-              />
-              <h4 className="text-lg font-bold mb-2">Takar Bowa</h4>
-              <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <div className="flex-1 text-center">
+              <div className="border p-4 rounded-lg mb-4 mr-4">
+                <img
+                  src="/images/cc.jpg"
+                  alt="Takar Bowa 3"
+                  className="w-16 h-16 rounded-full mb-4 object-cover"
+                />
+                <h4 className="text-lg font-bold mb-2">Takar Bowa</h4>
+                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </div>
+            </div>
+            <div className="flex-1 text-center">
+              <div className="border p-4 rounded-lg mb-4">
+                <img
+                  src="/images/dd.jpg"
+                  alt="Takar Bowa 4"
+                  className="w-16 h-16 rounded-full mb-4 object-cover"
+                />
+                <h4 className="text-lg font-bold mb-2">Takar Bowa</h4>
+                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      
     </div>
   );
 };

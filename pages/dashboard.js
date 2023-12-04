@@ -1,25 +1,20 @@
-// components/Dashboard.js
-import React from 'react';
-import { useAuth } from '../contexts/AuthContext';
-import { useRouter } from 'next/router';
+import React from "react";
+import ProductsTable from "../components/ProductsTable";
+import OrdersTable from "../components/OrdersTable";
 
-
-const dashboard = () => {
-  const { user } = useAuth(); // Replace with your authentication hook or context
-  const { logout } = useAuth();
-  const router = useRouter();
-
-  const handleLogout = () => {
-    logout();
-    // Redirect to the login page or any other desired page
-    router.push('/login');
-  };
+const Dashboard = () => {
   return (
-    <div>
-      <h1>Welcome to the Dashboard, {user && user.email}!</h1>
-      <button onClick={handleLogout}>Logout</button>
+    <div className="flex">
+      <div style={{ marginRight: "16px", margin: "auto" }}>
+        <h2>Products Table</h2>
+        <ProductsTable />
+      </div>
+      <div style={{ marginLeft: "16px", margin: "auto" }}>
+        <h2>Orders Table</h2>
+        <OrdersTable />
+      </div>
     </div>
   );
 };
 
-export default dashboard;
+export default Dashboard;

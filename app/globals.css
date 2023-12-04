@@ -2,7 +2,6 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -23,8 +22,6 @@
     margin-bottom: 20px; 
   }
 
-
-
   .mx-10 {
     margin-left: 10px;
     margin-right: 10px;
@@ -38,7 +35,6 @@
     width: 100%; 
     max-width: 100px; 
   }
-
 
   nav {
     flex-direction: column;
@@ -65,23 +61,17 @@
   }
 }
 
-
-
 body {
   font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   color: rgb(var(--foreground-rgb));
- 
 }
+
 .container {
   min-height: 100vh; 
-
 }
- 
-
-
 
 .nav {
   background-color: #FFFFFF;
@@ -105,7 +95,6 @@ body {
   cursor: pointer;
 }
 
-
 .icon:hover {
   opacity: 0.8;
 }
@@ -124,6 +113,41 @@ body {
   align-items: center; 
 }
 
+.button mt-4 {
+  background-color: #f8cc17;
+  color: white;
+  padding: 10px 20px;
+  margin-top: 5px;
+  text-decoration: none;
+  font-size: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 10px;
+  display: flex;
+  align-items: center; 
+}
+
+.add {
+  background-color: transparent;
+  color: #000405;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.close {
+  background-color: #2a2e2f;
+  border-radius: 5px;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+.create {
+  background-color: #2722b0;
+  border-radius: 5px;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
 .button img {
   margin-right: 2px;
 }
@@ -131,9 +155,6 @@ body {
 .button:hover {
   background-color: #d4b100;
 }
-
-
-
 
 .loginContainer {
   background-color: #fff;
@@ -160,31 +181,31 @@ input {
   border-radius: 4px;
 }
 
-table {
+.mx-auto {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
 }
 
-thead {
-  background-color: #f2f2f2;
+.table-container {
+  margin: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
 }
 
 th, td {
-  padding: 10px;
   border: 1px solid #ddd;
-}
-
-
-th {
+  padding: 8px;
   text-align: left;
 }
 
-
-tbody tr:nth-child(even) {
-  background-color: #f9f9f9;
+th {
+  background-color: #f2f2f2;
 }
-
 
 .cart-total {
   display: flex;
@@ -208,7 +229,6 @@ tbody tr:nth-child(even) {
   margin-top: 10px;
 }
 
-
 #paypal-button-container {
   width: 200px;
   height: 100px;
@@ -223,20 +243,47 @@ tbody tr:nth-child(even) {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: 500px; /* Adjust as needed for spacing */
+  margin-right: 200px;
 }
 
 .status-icon {
   font-size: 2em;
-  margin-bottom: 10px; /* Adjust as needed for spacing between icon and text */
+  margin-bottom: 10px;
 }
 
-/* .footer-wrapper {
-  position: fixed;
-  bottom: 0;
-  left: 0;
+.pizza-form {
+  display: none;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.pizza-form.show {
+  display: block;
+  display: flex;
+  justify-content: space-between;
+}
+
+.pizza-form.hide {
+  display: none;
+}
+
+.pizza-form {
+  display: none;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.pizza-form.show {
+  display: block;
+}
+
+.pizza-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.pizza-form input {
   width: 100%;
-  background-color: #fff;
-  padding: 20px; 
-  box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.1); 
-} */
+  padding: 8px;
+  margin-bottom: 10px;
+}

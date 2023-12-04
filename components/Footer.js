@@ -1,4 +1,3 @@
-// components/Footer.js
 import React from "react";
 
 const Footer = () => {
@@ -77,7 +76,7 @@ const Footer = () => {
       <div className="flex-1 md:w-1/4">
         <h5 style={{ color: "red" }}>SOCIAL MEDIA</h5>
         <div>
-          {/* Social Media Icons */}
+        
           <div className="flex">
             <img src="/images/ff.png" className="w-8 h-8 mr-4" />
             <img src="/images/ee.png" className="w-8 h-8 mr-4" />
