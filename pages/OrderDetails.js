@@ -1,6 +1,12 @@
 import React from "react";
 
 const OrderDetails = ({ orderId, customer, address, total, cartDetails }) => {
+  // Ensure that cartDetails is parsed from a JSON string
+  if (typeof cartDetails === "string") {
+    cartDetails = JSON.parse(cartDetails);
+  }
+ 
+  
   return (
     <div>
       <h2>Order Details</h2>
@@ -25,13 +31,15 @@ const OrderDetails = ({ orderId, customer, address, total, cartDetails }) => {
 
       <table>
         <tbody>
-          {cartDetails.map((item) => (
-            <tr key={item.id}>
-              <td>{item.name}</td>
-              <td>{item.quantity}</td>
-              <td>${item.price}</td>
-            </tr>
-          ))}
+         
+          {cartDetails && cartDetails.map((item) => (
+  <tr key={item.id}>
+    <td>{item.name}</td>
+    <td>{item.quantity}</td>
+    <td>${item.price}</td>
+  </tr>
+))}
+
         </tbody>
       </table>
     </div>

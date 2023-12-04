@@ -38,9 +38,12 @@ const OrderDetailsPage = ({ isOrderPaid }) => {
         <>
           <div className="mx-auto flex">
            
-            <div className="flex-1">
+            {/* <div className="flex-1">
               <OrderDetails orderId={0} customer="Bella" address={0} total={89} cartDetails={cartDetails} />
-            </div>
+            </div> */}
+            <div className="flex-1">
+  <OrderDetails orderId={orderDetails.id} customer={orderDetails.customer} address={orderDetails.address} total={orderDetails.total} cartDetails={cartDetails} />
+</div>
 
           
             <div className="cart-total" style={{ marginLeft: '20px', fontSize: '1.2em' }}>
