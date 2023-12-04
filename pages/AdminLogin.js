@@ -39,9 +39,7 @@ const AdminLogin = ({ onLogin, onLogout, isAdminLoggedIn }) => {
             className="mr-2"
           />
           <Link href="/dashboard">Login</Link>
-          <button onClick={handleLogin} className="button">
-            Login
-          </button>
+          
         </div>
       )}
     </div>

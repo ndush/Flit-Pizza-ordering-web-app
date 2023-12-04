@@ -13,16 +13,18 @@ const OrderDetailsPage = ({ isOrderPaid }) => {
   const [subtotal, setSubtotal] = useState(0);
   const [discount, setDiscount] = useState(0);
   const [total, setTotal] = useState(0);
-
   useEffect(() => {
-    const calculatedSubtotal = cartDetails.reduce((acc, item) => acc + (item.price || 0) * (item.quantity || 1), 0);
-    const calculatedDiscount = 0; 
-    const calculatedTotal = calculatedSubtotal - calculatedDiscount;
-
-    setSubtotal(calculatedSubtotal);
-    setDiscount(calculatedDiscount);
-    setTotal(calculatedTotal);
+    if (cartDetails) {
+      const calculatedSubtotal = cartDetails.reduce((acc, item) => acc + (item.price || 0) * (item.quantity || 1), 0);
+      const calculatedDiscount = 0; 
+      const calculatedTotal = calculatedSubtotal - calculatedDiscount;
+  
+      setSubtotal(calculatedSubtotal);
+      setDiscount(calculatedDiscount);
+      setTotal(calculatedTotal);
+    }
   }, [cartDetails]);
+  
 
   const renderPaidOrder = () => {
     return <></>; 

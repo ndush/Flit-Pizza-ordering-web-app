@@ -12,13 +12,26 @@ const Cart = () => {
   const [paymentMethod, setPaymentMethod] = useState("");
   const [isSdkLoaded, setIsSdkLoaded] = useState(false);
   const [showCashOnDeliveryForm, setShowCashOnDeliveryForm] = useState(false);
+  const [subtotal, setSubtotal] = useState(0);
+  const [discount, setDiscount] = useState(0);
+  const [total, setTotal] = useState(0);
 
-  const subtotal = cart.reduce(
-    (acc, item) => acc + (item.price || 0) * (item.quantity || 1),
-    0
-  );
-  const discount = 0;
-  const total = subtotal - discount;
+  const convertPriceToNumber = (priceString) => {
+    return parseFloat(priceString.replace('$', '').trim());
+  };
+  
+  useEffect(() => {
+    const calculatedSubtotal = cart.reduce(
+      (acc, item) => acc + (convertPriceToNumber(item.price) || 0) * (item.quantity || 1),
+      0
+    );
+    const calculatedDiscount = 0;
+    const calculatedTotal = calculatedSubtotal - calculatedDiscount;
+
+    setSubtotal(calculatedSubtotal);
+    setDiscount(calculatedDiscount);
+    setTotal(calculatedTotal);
+  }, [cart]);
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -48,7 +61,7 @@ const Cart = () => {
     if (isSdkLoaded) {
       renderPayPalButton();
     }
-  }, [isSdkLoaded]);
+  }, [isSdkLoaded, total]);
 
   const renderPayPalButton = () => {
     const container = document.getElementById("paypal-button-container");
@@ -184,7 +197,7 @@ const Cart = () => {
                     </td>
                     <td>{item.price}</td>
                     <td>{item.quantity}</td>
-                    <td>{item.price * item.quantity}</td>
+                    <td>{convertPriceToNumber(item.price) * item.quantity}</td>
                   </tr>
                   <tr>
                     <td
