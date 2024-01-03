@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect,useState } from "react";
 import Link from "next/link";
-import AdminLogin from "./AdminLogin";
-import AddPizzaForm from "./AddPizzaForm";
 import { useRouter } from "next/router";
+import AddPizzaForm from "./AddPizzaForm";
 
 export const pizzas = [
   {
@@ -62,7 +61,6 @@ const Products = () => {
   const [hoveredStar, setHoveredStar] = useState(null);
   const [filter, setFilter] = useState("all");
   const [sortOption, setSortOption] = useState("name");
-  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
   const [showAddPizzaForm, setShowAddPizzaForm] = useState(false);
 
   const handleStarHover = (index) => {
@@ -77,20 +75,25 @@ const Products = () => {
     console.log(`You clicked on star ${index + 1}`);
   };
 
-  const handleLogin = () => {
-    setIsAdminLoggedIn(true);
-  };
-
-  const handleLogout = () => {
-    setIsAdminLoggedIn(false);
-  };
-
   const handleAddPizzaClick = () => {
     setShowAddPizzaForm(!showAddPizzaForm);
   };
 
   const handleCloseFormClick = () => {
     setShowAddPizzaForm(false);
+  };
+
+  const handleFilterInputChange = (event) => {
+    setFilter(event.target.value);
+  };
+
+  const handleFilterButtonClick = () => {
+    console.log("Filter button clicked");
+    // Perform filtering logic here (if needed)
+  };
+
+  const handleSortOptionChange = (event) => {
+    setSortOption(event.target.value);
   };
 
   const filteredAndSortedPizzas = pizzas
@@ -111,72 +114,101 @@ const Products = () => {
       }
     });
 
+  useEffect(() => {
+    console.log("isProductsPage:", isProductsPage);
+    console.log("filteredAndSortedPizzas:", filteredAndSortedPizzas);
+  }, [isProductsPage, filteredAndSortedPizzas]);
+
   return (
     <div>
-      {isProductsPage && (
-        <AdminLogin
-          onLogin={handleLogin}
-          onLogout={handleLogout}
-          isAdminLoggedIn={isAdminLoggedIn}
+    {isProductsPage && (
+      <div className="mt-40 flex justify-between items-center ">
+        <div >
+          <button className="button" onClick={handleFilterButtonClick}>
+            <img
+              src="/images/ii.png"
+              alt="Filter Icon"
+              className="w-4 h-4 mr-2"
+            />
+            Filter
+          </button>
+        </div>
+        <div className="flex items-center relative z-10">
+          <p className="mr-2">
+            Showing all {filteredAndSortedPizzas.length} results
+          </p>
+          <select
+            className="p-2 border"
+            value={sortOption}
+            onChange={handleSortOptionChange}
+          >
+            <option value="">Sort by</option>
+            <option value="name">Sort by Name</option>
+            <option value="price">Sort by Price</option>
+            <option value="rating">Sort by Rating</option>
+          </select>
+        </div>
+      </div>
+    )}
+
+    <button className="button mt-4" onClick={handleAddPizzaClick}>
+      Add New Pizza
+    </button>
+
+    <AddPizzaForm
+      showForm={showAddPizzaForm}
+      onCloseFormClick={handleCloseFormClick}
+    />
+
+<div className="grid grid-cols-3 gap-4">
+  {filteredAndSortedPizzas.map((pizza) => (
+    <div key={pizza.id} className="border p-4 flex flex-col">
+      <Link href={`/product/${pizza.id}`} passHref>
+        <img
+          src={pizza.image}
+          alt={pizza.name}
+          className="w-full h-40 object-contain mb-2 cursor-pointer"
         />
-      )}
+      </Link>
+      <p className="mb-2">
+        <b className="font-semibold text-sm">{pizza.name}</b>
+        <span style={{ color: "red" }} className="font-semibold ml-2">
+          {pizza.price}
+        </span>
+      </p>
 
-      <div className="flex items-center mb-4"></div>
-
-      <button className="button mt-4" onClick={handleAddPizzaClick}>
-        Add New Pizza
-      </button>
-
-      <AddPizzaForm
-        showForm={showAddPizzaForm}
-        onCloseFormClick={handleCloseFormClick}
-      />
-
-      <div className="grid grid-cols-3 gap-4">
-        {filteredAndSortedPizzas.map((pizza) => (
-          <div key={pizza.id} className="border p-4 flex flex-col items-center">
-            <Link href={`/product/${pizza.id}`} passHref>
-              <img
-                src={pizza.image}
-                alt={pizza.name}
-                className="w-full h-40 object-contain mb-2"
-              />
-            </Link>
-            <p className="text-center mb-2">
-              <b>{pizza.name}</b>{" "}
-              <span style={{ color: "red" }}>{pizza.price}</span>
-            </p>
-            <div className="flex mb-2">
-              {[1, 2, 3, 4, 5].map((index) => (
-                <span
-                  key={index}
-                  className={`cursor-pointer ${
-                    index <= (hoveredStar || pizza.rating)
-                      ? "text-yellow-500"
-                      : "text-gray-300"
-                  }`}
-                  onMouseEnter={() => handleStarHover(index)}
-                  onMouseLeave={handleStarLeave}
-                  onClick={() => handleStarClick(index)}
-                >
-                  ★
-                </span>
-              ))}
-            </div>
-            <p className="text-center mb-2">{pizza.description}</p>
-            <Link href={`/product/${pizza.id}`} passHref>
-              <button className="button">
-                <img
-                  src="/images/n.png"
-                  alt="Cart Icon"
-                  className="w-3 h-3 cursor-pointer"
-                />
-                ORDER NOW
-              </button>
-            </Link>
-          </div>
+      <div className="flex mb-2">
+        {[1, 2, 3, 4, 5].map((index) => (
+          <span
+            key={index}
+            className={`cursor-pointer ${
+              index <= (hoveredStar || pizza.rating)
+                ? "text-yellow-500"
+                : "text-gray-300"
+            }`}
+            onMouseEnter={() => handleStarHover(index)}
+            onMouseLeave={handleStarLeave}
+            onClick={() => handleStarClick(index)}
+          >
+            ★
+          </span>
         ))}
       </div>
+      <p className="mb-2">{pizza.description}</p>
+      <Link href={`/product/${pizza.id}`} passHref>
+        <button className="button">
+          <img
+            src="/images/n.png"
+            alt="Cart Icon"
+            className="w-3 h-3 cursor-pointer mr-1"
+          />
+          ORDER NOW
+        </button>
+      </Link>
+    </div>
+  ))}
+</div>
+
     </div>
   );
 };

@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { pizzas } from "../products";
 import { useCart } from "../../components/CartContext";
-import { FiHeart } from 'react-icons/fi';
-
+import { FiHeart } from "react-icons/fi";
 
 const ProductDetails = () => {
   const { addToCart } = useCart();
@@ -54,19 +53,39 @@ const ProductDetails = () => {
 
   return (
     <div
-      style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}
+      style={{
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: "20px",
+        marginTop: "70px",
+      }}
     >
       <div>
         <img
           src={product.image}
           alt={product.name}
-          style={{ width: "100%", height: "auto" }}
+          style={{ width: "50%", height: "auto" }}
         />
       </div>
+
       <div>
-        <h1>{product.name}</h1>
-        <p style={{ fontWeight: "bold" }}> {product.price}</p>
-        <p>{product.rating} reviews</p>
+        <h1 style={{ fontSize: "16px" }}>{product.name}</h1>
+        <div>
+          <p
+            style={{
+              fontWeight: "bold",
+              color: "red",
+              display: "inline-block",
+              marginRight: "10px",
+            }}
+          >
+            {product.price}
+          </p>
+          <p style={{ display: "inline-block", color: "grey" }}>
+            {product.rating} reviews
+          </p>
+        </div>
+
         <p>{product.description}</p>
 
         <div style={{ marginTop: "20px" }}>
@@ -74,13 +93,14 @@ const ProductDetails = () => {
           <div style={{ display: "flex", gap: "20px" }}>
             <div>
               <button
+                className="pizza_size"
                 onClick={() => handleSizeChange("small")}
                 style={{
                   background: "red",
-                  height: "12px",
                   borderRadius: "10px",
                   color: "white",
-                  fontSize: "10px",
+                  fontSize: "9px",
+                  padding: "1px 1px",
                 }}
               >
                 Small
@@ -88,18 +108,21 @@ const ProductDetails = () => {
               <img
                 src="/images/Pizza-icon_ns1nad.png"
                 alt="Small Pizza"
-                style={{ width: "20px", height: "20px" }}
+                style={{ width: "20px", height: "20px", marginLeft: "5px" }}
               />
             </div>
+
             <div>
               <button
+                className="pizza_size"
                 onClick={() => handleSizeChange("medium")}
                 style={{
                   background: "red",
-                  height: "12px",
                   borderRadius: "10px",
                   color: "white",
-                  fontSize: "10px",
+                  fontSize: "9px",
+                  padding: "1px 1px",
+                  marginRight: "auto",
                 }}
               >
                 Medium
@@ -110,15 +133,18 @@ const ProductDetails = () => {
                 style={{ width: "30px", height: "30px" }}
               />
             </div>
+
             <div>
               <button
+                className="pizza_size"
                 onClick={() => handleSizeChange("large")}
                 style={{
                   background: "red",
-                  height: "12px",
                   borderRadius: "10px",
                   color: "white",
-                  fontSize: "10px",
+                  fontSize: "9px",
+                  padding: "1px 1px",
+                  marginRight: "auto",
                 }}
               >
                 Large
@@ -147,10 +173,13 @@ const ProductDetails = () => {
         </div>
 
         <div style={{ marginTop: "20px" }}>
-          <h2>Choose Additional Ingredients</h2>
-
-          <div style={{ marginTop: "10px", display: "flex", gap: "10px" }}>
-           
+          <div
+            style={{
+              marginTop: "10px",
+              display: "flex",
+              gap: "10px",
+            }}
+          >
             <div
               style={{
                 marginTop: "10px",
@@ -159,16 +188,18 @@ const ProductDetails = () => {
               }}
             >
               <input
-                type="text"
-                value={itemCount}
-                style={{
-                  border: "1px solid #ccc",
-                  outline: "none",
-                  width: "100px",
-                  paddingRight: "20px",
-                }}
-                readOnly
-              />
+  type="text"
+  value={itemCount}
+  style={{
+    border: "1px solid #ccc",
+    outline: "none",
+    width: "80px",
+    padding: "5px", 
+    fontSize: "12px", 
+  }}
+  readOnly
+/>
+
               <div
                 style={{
                   position: "absolute",
@@ -205,28 +236,30 @@ const ProductDetails = () => {
                 </button>
               </div>
             </div>
-            <button onClick={handleAddToCart} className="button">
-              ADD TO CART
-            </button>
+            <div>
+             
+              <button className="button " onClick={handleAddToCart} style = {{ marginTop: "20px"}}>
+                ADD TO CART
+              </button>
+            </div>
+
             <div
-  style={{
-    background: "white",
-                    borderRadius: "50%",
-                    padding: "5px",
-                    display: "flex",
-                    alignItems: "center",
-                    cursor: "pointer",
-                    border: "1px solid #ccc",
-                    borderWidth: "1px",
-                    marginRight: "5px",  
-  }}
->
-  <FiHeart
-    size={20}
-    color="black"
-    
-  />
-</div>
+              style={{
+                background: "white",
+                width: "20px",
+                height: "20px",
+                borderRadius: "50%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                cursor: "pointer",
+                border: "1px solid #ccc",
+                marginRight: "5px",
+                marginTop: "20px",
+              }}
+            >
+              <FiHeart size={10} color="black" />
+            </div>
           </div>
         </div>
       </div>

@@ -1,15 +1,13 @@
-
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
 const Layout = ({ children }) => {
   return (
     <>
-      <Navbar />
-      <div className="mx-10">
+      <div style={{ margin: "10px  " }} className="mx-10">
+        <Navbar />
         {children}
         <Footer />
-      
       </div>
     </>
   );

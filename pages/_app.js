@@ -1,7 +1,8 @@
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 import Layout from "../components/Layout";
-import styles from '../app/globals.css';
+import '../app/globals.css';
+
 import { CartProvider } from '../components/CartContext';
 import { AuthProvider } from '../contexts/AuthContext';
 

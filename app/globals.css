@@ -1,11 +1,13 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
 
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --global-font-size: 16px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -16,24 +18,60 @@
   }
 }
 
-@media (max-width: 768px) {
-  .flex-1 {
-    flex: 1;
-    margin-bottom: 20px; 
+@media (min-width: 769px) {
+  .absolute-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    transform: translateY(-50%);
+    width: 100vw; 
+    margin-top: 300px; 
   }
 
+  
+}
+
+
+@media (max-width: 768px) {
+  @media (max-width: 768px) {
+    .absolute-container {
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      transform: translateY(-50%);
+      width: 100vw; /* Full width relative to the viewport */
+      margin-top: 10px; /* Adjust as needed */
+   
+    }
+  }
+  
+
+  .flex-1 {
+    flex: 1;
+    margin-bottom: 20px;
+  }
+  body {
+    margin: 0;
+    font-size: var(--global-font-size);
+  }
+  
   .mx-10 {
-    margin-left: 10px;
-    margin-right: 10px;
+    margin: 0;
   }
 
   .mr-90 {
-    margin-right: 0; 
+    margin-right: 0;
   }
 
   .w-15 {
-    width: 100%; 
-    max-width: 100px; 
+    width: 100%;
+    max-width: 100px;
   }
 
   nav {
@@ -47,22 +85,22 @@
 
   .mr-4 {
     margin-right: 0;
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
   }
 
   .w-4,
   .h-4 {
-    width: 20px; 
+    width: 20px;
     height: 20px;
   }
 
   .sticky {
-    position: static; 
+    position: static;
   }
 }
 
-body {
-  font-family: 'Arial', sans-serif;
+* {
+  font-family: "Arial", sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -70,12 +108,13 @@ body {
 }
 
 .container {
-  min-height: 100vh; 
+  min-height: 100vh;
 }
 
 .nav {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   padding: 10px;
+  
 }
 
 .navList {
@@ -102,30 +141,18 @@ body {
 .button {
   background-color: #f8cc17;
   color: white;
-  padding: 10px 20px;
+  padding: 5px 5px;
   margin-top: 5px;
   text-decoration: none;
-  font-size: 10px;
+  font-size: 7px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  border-radius: 10px;
+  border-radius: 50px;
   display: flex;
-  align-items: center; 
+  align-items: center;
 }
 
-.button mt-4 {
-  background-color: #f8cc17;
-  color: white;
-  padding: 10px 20px;
-  margin-top: 5px;
-  text-decoration: none;
-  font-size: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  border-radius: 10px;
-  display: flex;
-  align-items: center; 
-}
+
 
 .add {
   background-color: transparent;
@@ -137,14 +164,14 @@ body {
 .close {
   background-color: #2a2e2f;
   border-radius: 5px;
-  color: #FFFFFF;
+  color: #ffffff;
   cursor: pointer;
 }
 
 .create {
   background-color: #2722b0;
   border-radius: 5px;
-  color: #FFFFFF;
+  color: #ffffff;
   cursor: pointer;
 }
 
@@ -181,11 +208,7 @@ input {
   border-radius: 4px;
 }
 
-.mx-auto {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
+
 
 .table-container {
   margin: 20px;
@@ -197,7 +220,8 @@ table {
   margin-top: 10px;
 }
 
-th, td {
+th,
+td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
@@ -287,3 +311,39 @@ th {
   padding: 8px;
   margin-bottom: 10px;
 }
+h1 {
+  @apply text-4xl font-bold;
+}
+h5 {
+  font-size: 1.25rem; 
+  font-weight: bold;
+}
+.custom-section {
+  margin-top: 200px; 
+}
+
+
+
+
+
+
+.welcome-image {
+  width: 170px;
+  height: 170px;
+  margin-left: 50px;
+margin-top: 70px;
+}
+
+.welcome-image-small1 {
+  width: 70px;
+  height: 70px;
+  margin-right: 300px;
+}
+
+.welcome-image-small2 {
+  width: 100px;
+  height: 100px;
+  margin-left: 200px;
+  margin-bottom: 50px;
+}
+

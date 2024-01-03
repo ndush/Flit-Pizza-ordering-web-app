@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 import { useCart } from './CartContext';
 import { FaHome, FaShoppingCart, FaSearch } from 'react-icons/fa';
@@ -7,31 +6,31 @@ const Navbar = () => {
   const { cart } = useCart();
 
   return (
-    <nav className="bg-white p-4 flex items-center justify-between sticky top-0 z-50">
+    <nav className="bg-white p-4 flex items-center justify-between fixed top-0 w-full z-50">
       <div className="flex items-center">
         <Link href="/">
-          <img src="/images/d.png" alt="Logo" className="w-8 h-8 mr-4" />
+          <img src="/images/d.png" alt="Logo" className="w-16 h-16 mr-4" />
         </Link>
       </div>
       <div>
-        <img src="/images/c.png" alt="image" className="w-15 h-10 mr-90" />
+        <img src="/images/c.png" alt="image" className="w-25 h-20 mr-90" />
       </div>
       <div className="flex items-center">
         <Link href="/">
-          <span className="mr-4">Home</span>
+          <h2 className="mr-4 font-bold text-1xl">Home</h2>
         </Link>
 
         <Link href="/products">
-          <span className="mr-4">Products</span>
+          <h2 className="mr-4 font-bold text-1xl">Products</h2>
         </Link>
         <Link href="/pages">
-          <span className="mr-4">Pages</span>
+          <h2 className="mr-4 font-bold text-1xl">Pages</h2>
         </Link>
         <Link href="/blog">
-          <span className="mr-4">Blog</span>
+          <h2 className="mr-4 font-bold text-1xl">Blog</h2>
         </Link>
         <Link href="/contact">
-          <span className="mr-4">Contact</span>
+          <h2 className="mr-4 font-bold text-1xl">Contact</h2>
         </Link>
         <img
           src="/images/1.png"
@@ -39,7 +38,6 @@ const Navbar = () => {
           className="w-4 h-4 cursor-pointer mr-4"
         />
         <span className="mr-4 relative">
-         
         </span>
         <Link href="/cart" className="relative">
           <img

@@ -2,73 +2,75 @@ import Products from "./products";
 
 const Home = () => {
   return (
-    <div className="mx-10">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-8 relative">
-        <div className="relative">
-          <p className="text-lg">
-            <b>
-              Handmade,<br></br> With an Extra<br></br> Pinch Of
+    <div >
+      <section className="custom-section grid grid-cols-1 sm:grid-cols-2 gap-4  ">
+        <div className="flex items-center justify-between w-full">
+          <div className="relative">
+            <h1>
+              Handmade,
+              <br />
+              With an Extra
+              <br />
+              Pinch Of
               <span style={{ color: "red" }}> Love</span>
-            </b>
-            <br></br>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </p>
-          <button className="button">
-            <img
-              src="/images/n.png"
-              alt="Cart Icon"
-              className="w-2 h-33cursor-pointer"
-            />
-            ORDER NOW
-          </button>
-        </div>
-        <div className="relative w-1/2 h-full ml-auto mr-0">
-          <div className="absolute bottom-0 left-0 w-full h-full bg-yellow-400 rounded-bl-full rounded-tl-full"></div>
-          <div>
-            <img
-              src="/images/6.png"
-              alt="Welcome Image"
-              className="w-full h-full relative z-10"
-              style={{ width: "100px", height: "100px", marginLeft: "-40px" }}
-            />
-            <img
-              src="/images/m.png"
-              alt="Welcome Image"
-              className="w-full h-full relative z-10"
-              style={{ width: "50px", height: "50px", marginLeft: "-200px" }}
-            />
-            <img
-              src="/images/l.png"
-              alt="Welcome Image"
-              className="w-full h-full relative z-10"
-              style={{ width: "50px", height: "50px", marginLeft: "-10px" }}
-            />
+            </h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <button className="button font-bold" >
+              <img
+                src="/images/n.png"
+                alt="Cart Icon"
+                className="w-2 h-33 cursor-pointer"
+              />
+              ORDER NOW
+            </button>
           </div>
+
+          
+            <div className="absolute-container">
+              <div className="relative z-10">
+                <img
+                  src="/images/6.png"
+                  alt="Welcome Image"
+                  className="welcome-image"
+                />
+                <img
+                  src="/images/m.png"
+                  alt="Welcome Image"
+                  className="welcome-image-small1"
+                />
+                <img
+                  src="/images/l.png"
+                  alt="Welcome Image"
+                  className="welcome-image-small2"
+                />
+              </div>
+             
+              <div className="absolute bottom-20 right-0 w-[200px] h-[350px] bg-yellow-400 rounded-tl-full rounded-bl-full"></div>
+             
+            </div>
+          
         </div>
-        <div></div>
-      </div>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      </section>
+
+      <section className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-20">
         <div className="p-4 text-center">
           <img
             src="/images/5.png"
             alt="Welcome Image"
             className="w-full h-full relative z-10"
-            style={{ width: "100px", height: "100px" }}
+            style={{ width: "250px", height: "250px" }}
           />
         </div>
-        <div className=" p-6 text-center">
+        <div className="p-6 text-center">
           <p className="text-lg">
-            <b>
-              Daily fresh and,<br></br> always tasty
-            </b>
-            <br></br>
+            <b>Daily fresh and, always tasty</b>
+            <br />
             There are many variations of passages of
-            <br></br>
-            Lorem ipsum availlable, but the majority <br></br>
-            haved
+            <br />
+            Lorem ipsum available, but the majority have
           </p>
         </div>
-        <div className=" p-2 text-center">
+        <div className="p-2 text-center">
           <img
             src="/images/o.png"
             alt="Welcome Image"
@@ -76,18 +78,20 @@ const Home = () => {
             style={{ width: "30px", height: "30px", marginTop: "50px" }}
           />
         </div>
-      </div>
+      </section>
+
       <div>
-        <h5 style={{ color: "red" }}>Popular Dishes</h5>
-        <h3 className="text-4l font-bold mb-4">Browse our Menu</h3>
+        <b style={{ color: "red" }}>Popular Dishes</b>
+        <h5>Browse our Menu</h5>
         <Products />
       </div>
+
       <div style={{ position: "relative" }}>
         <img
           src="/images/hlf.png"
           style={{
-            width: "60px",
-            height: "60px",
+            width: "70px",
+            height: "50px",
             position: "absolute",
             top: 0,
             right: 0,
@@ -103,8 +107,8 @@ const Home = () => {
             paddingBottom: "10px",
           }}
         >
-          <h5 style={{ color: "red" }}>Our Strength</h5>
-          <h3 className="text-4l font-bold mb-4">Why We Are The Best?</h3>
+          <b style={{ color: "red" }}>Our Strength</b>
+          <h5 className=" font-bold mb-4">Why We Are The Best?</h5>
 
           <div
             className="flex"
@@ -115,7 +119,7 @@ const Home = () => {
                 src="/images/sima.png"
                 style={{ width: "20px", height: "20px" }}
               />
-              <h4 className="text-4l font-bold mb-2">All Kinds of Foods</h4>
+              <h4 className="font-semibold text-sm">All Kinds of Foods</h4>
               <p>
                 Lorem ipsum dolor sit amet,<br></br> consectetur adipiscing
                 elit.
@@ -166,50 +170,51 @@ const Home = () => {
             className="w-full h-full relative z-10"
             style={{ width: "30px", height: "30px", marginTop: "40px" }}
           />
-          <h5 style={{ color: "red" }}>Customer Feedback</h5>
-          <h3 className="text-4l font-bold mb-4">Client Testimonials</h3>
+          <b style={{ color: "red" }}>Customer Feedback</b>
+          <h5 className="font-bold mb-4">Client Testimonials</h5>
 
           <div className="flex">
-            <div className="flex-1 text-center">
+            <div className="flex-1 text-center mx-auto">
               <div className="border p-4 rounded-lg mb-4 mr-4">
                 <img
                   src="/images/aa.jpg"
                   alt="Takar Bowa 1"
-                  className="w-16 h-16 rounded-full mb-4 object-cover"
+                  className="w-16 h-16 rounded-full mb-4 object-cover mx-auto"
                 />
                 <h4 className="text-lg font-bold mb-2">Takar Bowa</h4>
                 <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
               </div>
             </div>
-            <div className="flex-1 text-center">
+            <div className="flex-1 text-center mx-auto">
               <div className="border p-4 rounded-lg mb-4 mr-4">
                 <img
                   src="/images/bb.jpg"
                   alt="Takar Bowa 2"
-                  className="w-16 h-16 rounded-full mb-4 object-cover"
+                  className="w-16 h-16 rounded-full mb-4 object-cover mx-auto"
                 />
                 <h4 className="text-lg font-bold mb-2">Takar Bowa</h4>
                 <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
               </div>
             </div>
-            <div className="flex-1 text-center">
+            <div className="flex-1 text-center mx-auto">
               <div className="border p-4 rounded-lg mb-4 mr-4">
                 <img
                   src="/images/cc.jpg"
                   alt="Takar Bowa 3"
-                  className="w-16 h-16 rounded-full mb-4 object-cover"
+                  className="w-16 h-16 rounded-full mb-4 object-cover mx-auto"
                 />
                 <h4 className="text-lg font-bold mb-2">Takar Bowa</h4>
                 <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
               </div>
             </div>
-            <div className="flex-1 text-center">
-              <div className="border p-4 rounded-lg mb-4">
+            <div className="flex-1 text-center mx-auto">
+              <div className="border p-4 rounded-lg mb-4 mr-4">
                 <img
                   src="/images/dd.jpg"
                   alt="Takar Bowa 4"
-                  className="w-16 h-16 rounded-full mb-4 object-cover"
+                  className="w-16 h-16 rounded-full mb-4 object-cover mx-auto"
                 />
+
                 <h4 className="text-lg font-bold mb-2">Takar Bowa</h4>
                 <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
               </div>
