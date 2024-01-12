@@ -1,20 +1,40 @@
-
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 
-const AdminLogin = () => {
+const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
 
-  const handleLogin = (e) => {
-    e.preventDefault(); 
+  const handleLogin = async (e) => {
+    e.preventDefault();
 
-    if (username === "admin" && password === "admin123") {
-     
-      router.push("/dashboard");
-    } else {
-      alert("Invalid credentials. Please try again.");
+    const loginData = {
+      username,
+      password,
+    };
+
+    try {
+      const response = await fetch("/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(loginData),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+
+        const token = data.token;
+
+        router.push("/dashboard");
+      } else {
+        const errorData = await response.json();
+        alert(`Error: ${errorData.message}`);
+      }
+    } catch (error) {
+      alert("An unexpected error occurred. Please try again.");
     }
   };
 
@@ -22,7 +42,7 @@ const AdminLogin = () => {
     <div className="flex justify-center items-center h-screen">
       <form onSubmit={handleLogin}>
         <div>
-          <h2>Admin Login</h2>
+          <h2>Login</h2>
           <label>
             Username:
             <input
@@ -41,11 +61,13 @@ const AdminLogin = () => {
             />
           </label>
           <br />
-          <button type="submit" className ="button">Login</button>
+          <button type="submit" className="button">
+            Login
+          </button>
         </div>
       </form>
     </div>
   );
 };
 
-export default AdminLogin;
+export default LoginForm;
