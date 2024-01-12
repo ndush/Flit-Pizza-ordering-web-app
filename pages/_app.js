@@ -1,10 +1,8 @@
-import { QueryClient, QueryClientProvider } from 'react-query';
-
+import { QueryClient, QueryClientProvider } from "react-query";
+import { CartProvider } from "../components/CartContext";
+import { AuthProvider } from "../contexts/AuthContext";
 import Layout from "../components/Layout";
-import '../app/globals.css';
-
-import { CartProvider } from '../components/CartContext';
-import { AuthProvider } from '../contexts/AuthContext';
+import "../app/globals.css";
 
 const queryClient = new QueryClient();
 
