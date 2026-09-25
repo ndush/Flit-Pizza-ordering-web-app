@@ -5,3 +5,7 @@
   NODE_VERSION = "22"
   # Dev-only embedded MongoDB: don't download its ~70MB binary on Netlify.
   MONGOMS_DISABLE_POSTINSTALL = "1"
+
+# Runs Next.js server rendering and server actions as Netlify functions.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
