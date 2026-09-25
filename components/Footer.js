@@ -1,113 +1,42 @@
-import React from "react";
-import Link from "next/link";
+import Link from 'next/link';
+import { FiFacebook, FiInstagram, FiTwitter } from 'react-icons/fi';
+import Logo from './Logo';
 
-const Footer = () => {
+export default function Footer() {
   return (
-    <div className="footer-wrapper">
-      <div className="flex flex-wrap" style={{ marginTop: "40px" }}>
-        <div className="flex-1 md:w-1/4">
-          <h5 style={{ fontSize: "small" }}>INFORMATION</h5>
-          <div>
-            <ul>
-              <li>
-                <a href="#">Home</a>
-              </li>
-              <li>
-                <a href="#">Blog</a>
-              </li>
-              <li>
-                <a href="#">About Us</a>
-              </li>
-              <li>
-                <a href="#">Menu</a>
-              </li>
-              <li>
-                <a href="#">Contact Us</a>
-              </li>
-            </ul>
-          </div>
+    <footer className="mt-24 bg-ink text-cream/80">
+      <div className="container-x grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
+        <div>
+          <Logo className="text-cream" />
+          <p className="mt-3 max-w-xs text-sm">Hand-stretched dough, proofed for 48 hours, fired hot and delivered fast.</p>
         </div>
-
-        <div className="flex-1 md:w-1/4">
-          <h5 style={{ fontSize: "small" }}>TOP ITEMS</h5>
-          <div>
-            <ul>
-              <li>
-                <a href="#">Pepperoni</a>
-              </li>
-              <li>
-                <a href="#">Swiss Mushroom</a>
-              </li>
-              <li>
-                <a href="#">Barbeque Chicken </a>
-              </li>
-              <li>
-                <a href="#">Vegetarian</a>
-              </li>
-              <li>
-                <a href="#">Ham & Cheese</a>
-              </li>
-            </ul>
-          </div>
+        <div className="text-sm">
+          <h3 className="mb-3 font-sans text-xs font-bold tracking-[0.2em] text-cheese uppercase">Visit</h3>
+          <p>12 Mozzarella Lane</p>
+          <p>Open daily, 11:00 – 23:00</p>
         </div>
-
-        <div className="flex-1 md:w-1/4">
-          <h5 style={{ fontSize: "small" }}>OTHERS</h5>
-          <div>
-            <ul>
-              <li>
-                <a href="#">Checkout</a>
-              </li>
-              <li>
-                <a href="#">Cart</a>
-              </li>
-              <li>
-                <a href="#">Product</a>
-              </li>
-              <li>
-                <a href="#">Locations</a>
-              </li>
-              <li>
-                <a href="#">Legal</a>
-              </li>
-            </ul>
-          </div>
+        <div className="text-sm">
+          <h3 className="mb-3 font-sans text-xs font-bold tracking-[0.2em] text-cheese uppercase">Order</h3>
+          <ul className="space-y-1.5">
+            <li><Link href="/menu" className="hover:text-white">Menu</Link></li>
+            <li><Link href="/cart" className="hover:text-white">Cart</Link></li>
+            <li><Link href="/account" className="hover:text-white">Your orders</Link></li>
+            <li><Link href="/admin" className="hover:text-white">Staff login</Link></li>
+          </ul>
         </div>
-
-        <div className="flex-1 md:w-1/4">
-          <h5 style={{ fontSize: "small" }}>SOCIAL MEDIA</h5>
-          <div>
-            <div className="flex">
-              <img src="/images/ff.png" className="w-8 h-8 mr-4" />
-              <img src="/images/ee.png" className="w-8 h-8 mr-4" />
-              <img src="/images/hh.png" className="w-8 h-8 mr-4" />
-              <img src="/images/gg.png" className="w-8 h-8" />
-            </div>
-
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-
-            <Link
-              href="/adminlogin"
-              style={{
-                backgroundColor: "#f8cc17",
-                color: "white",
-                padding: "10px 20px",
-                marginTop: "5px",
-                textDecoration: "none",
-                fontSize: "10px",
-                cursor: "pointer",
-                transition: "background-color 0.3s ease",
-                borderRadius: "10px",
-                display: "inline-block",
-              }}
-            >
-              SIGN UP
-            </Link>
+        <div className="text-sm">
+          <h3 className="mb-3 font-sans text-xs font-bold tracking-[0.2em] text-cheese uppercase">Say hi</h3>
+          <p>hello@flitpizza.test</p>
+          <div className="mt-4 flex gap-3">
+            {[FiInstagram, FiFacebook, FiTwitter].map((Icon, i) => (
+              <span key={i} className="grid size-9 place-items-center rounded-full border border-cream/20">
+                <Icon aria-hidden />
+              </span>
+            ))}
           </div>
         </div>
       </div>
-    </div>
+      <p className="border-t border-cream/10 py-5 text-center text-xs text-cream/50">© {new Date().getFullYear()} Flit Pizza</p>
+    </footer>
   );
-};
-
-export default Footer;
+}

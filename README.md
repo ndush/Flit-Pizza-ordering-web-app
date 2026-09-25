@@ -1,67 +1,54 @@
+# Flit Pizza
 
-Welcome to the Flit Pizza Ordering Web App! This application allows users to conveniently order pizzas online from the comfort of their homes. It is built using Next.js with MongoDB integration.
+Order hand-stretched pizza online, pay cash on delivery, and track the order live. Built with Next.js 16 (App Router), MongoDB/Mongoose, Tailwind CSS v4 and [React Bits](https://reactbits.dev) animations.
 
-Features
-View Products: Users can browse through all available pizzas.
-View Single Product: Users can view detailed information about a specific pizza.
-Add to Cart: Users can add pizzas to their shopping cart.
-Order Processing: Users can process their orders securely.
-Admin Panel: Admins can log in, add new pizzas to the menu, view orders, and manage delivery.
-Technologies Used
-Frontend:
+## Run it
 
-Next.js
-React.js
-Tailwind CSS for styling
-Backend:
-
-MongoDB for database management
-Next.js API routes for backend logic
-Setup
-Clone the repository:
-
-bash
-Copy code
-git clone https://github.com/ndush/flit-pizza-ordering-web-app.git
-Install dependencies:
-
-bash
-Copy code
-cd flit-pizza-ordering-web-app
+```bash
 npm install
-Configure environment variables:
+npm run dev        # http://localhost:3000
+```
 
-Create a .env.local file in the root directory.
-Add the following variables:
-makefile
-Copy code
-MONGODB_URI=your_mongodb_uri
-Run the application:
+No setup needed for development: with `MONGODB_URI` unset, an embedded MongoDB starts automatically (data kept in `.data/`, delete it to reset) and is seeded with six pizzas and a staff account **admin@flit.test / admin123**.
 
+Customers sign up at `/register`, must be logged in to check out, and see their order history at `/account`. Staff log in at the same `/login` and land on the dashboard at `/admin`.
 
-Copy code
-npm run dev
-Access the application:
+## Production
 
-Open your browser and go to http://localhost:3000.
-Admin Panel
-To access the admin panel:
+Copy `.env.example` to `.env.local` (or set these in your host) and fill in:
 
-Go to http://localhost:3000/admin
-Use the following credentials:
-Username: admin
-Password: adminpassword
-Contributing
-Contributions are welcome! If you'd like to contribute to this project, please follow these steps:
+| Variable | Purpose |
+| --- | --- |
+| `MONGODB_URI` | MongoDB connection string (required) |
+| `JWT_SECRET` | Long random string for signing admin sessions (required) |
+| `ADMIN_EMAIL` / `ADMIN_PASSWORD` | Staff account created on boot if no admin exists |
 
-Fork the repository.
-Create a new branch (git checkout -b feature/your-feature).
-Make your changes.
-Commit your changes (git commit -am 'Add some feature').
-Push to the branch (git push origin feature/your-feature).
-Create a new Pull Request.
-License
-This project is licensed under the MIT License - see the LICENSE file for details.
+```bash
+npm run build && npm start
+```
 
-Acknowledgments
-Special thanks to XYZ Pizza Company for inspiration and sample data.
+## How it's put together
+
+```
+app/
+  actions.js            server actions: placeOrder, login/logout, create/delete product, advance order
+  page.js               home
+  menu/                 searchable, sortable menu
+  product/[id]/         size + extras picker
+  cart/                 cart + checkout (cash on delivery)
+  order/[id]/           live order tracker, visible to its owner and staff
+  login/, register/     customer + staff auth
+  account/              order history
+  admin/                staff dashboard: orders, menu management
+components/
+  bits/                 React Bits components (vendored, as the library intends)
+  Cart.js               cart state, persisted to localStorage
+lib/
+  db.js                 cached Mongoose connection (+ embedded dev fallback)
+  models.js             Product, Order, User
+  seed.js               first-boot data
+  auth.js               JWT session (id, name, role) in an httpOnly cookie
+  format.js             prices, sizes, statuses (shared client/server)
+```
+
+Pages read MongoDB directly in server components; all writes go through server actions. Order totals are always recomputed on the server from database prices. Every admin action checks the session role; orders are only visible to the customer who placed them and to staff.
